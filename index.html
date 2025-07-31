@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ForFit - Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/banner.css" />
+  <link rel="stylesheet" href="css/promocoes.css" />
+  <link rel="stylesheet" href="css/meal-card.css" />
+  <link rel="stylesheet" href="css/meals.css" /> 
+  <link rel="stylesheet" href="css/cart-popup.css" /> 
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="css/modals.css" />
+  
+  </head>
+<body>
+  <div id="header-placeholder"></div>
+  <div id="banner-placeholder"></div>
+  <div id="promocoes-placeholder"></div>
+  <section class="meals-section">
+    <div class="main-category-tabs">
+        <h2 class="main-category-title active" data-category="refeicoes">Refeições</h2>
+        <h2 class="main-category-title" data-category="cafeteria">Cafeteria</h2>
+        <div class="category-underline"></div>
+    </div>
+    <div class="meals-filter-content active" data-content="refeicoes">
+        <div class="meals-filters">
+          <button class="filter-button active" data-filter="tradicional">Tradicional</button>
+          <button class="filter-button" data-filter="low-carb">Low Carb</button>
+          <button class="filter-button" data-filter="caldos-sopas">Caldos & Sopas</button>
+          <div class="filter-underline"></div>
+        </div>
+        <div class="meals-grid-container"></div>
+    </div>
+    <div class="meals-filter-content" data-content="cafeteria">
+        <div class="meals-filters">
+            <button class="filter-button active" data-filter="cafe-expresso">Café Expresso</button>
+            <button class="filter-button" data-filter="lanches">Lanches</button>
+            <button class="filter-button" data-filter="doces">Doces</button>
+            <div class="filter-underline"></div>
+        </div>
+        <div class="meals-grid-container"></div>
+    </div>
+  </section>
+
+  <div id="add-to-cart-popup" class="add-to-cart-popup">
+    <i class="fas fa-check-circle"></i> Item adicionado ao carrinho!
+  </div>
+
+  <div id="confirm-remove-popup" class="confirm-remove-popup">
+    <div class="popup-content">
+      <p>Tem certeza que deseja remover este item?</p>
+      <div class="popup-actions">
+        <button id="confirm-remove-yes" class="btn-confirm-yes">Sim</button>
+        <button id="confirm-remove-no" class="btn-confirm-no">Não</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/header.js"></script>
+  <script src="js/banner.js"></script>
+  <script src="js/promocoes.js"></script>
+  <script src="js/meals.js"></script> 
+  <script src="js/cart-popup.js"></script> 
+  <script src="js/admin.js"></script> 
+  
+  <script>
+    // Estas variáveis globais serão atualizadas pelo header.js após verificar o localStorage
+    window.isAdmin = false; 
+    window.isLoggedIn = false; 
+
+    // Função auxiliar (mantida se ainda for usada para outros componentes carregados dinamicamente)
+    function initModalAfterFetch(placeholderId, htmlContent, initFunction) {
+        document.getElementById(placeholderId).innerHTML = htmlContent;
+        if (typeof initFunction === 'function') {
+            initFunction();
+        }
+    }
+
+    fetch('components/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+        if (typeof initHeader === 'function') {
+          initHeader();
+        }
+      });
+    fetch('components/banner.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('banner-placeholder').innerHTML = html;
+        if (typeof initBanner === 'function') {
+          initBanner();
+        }
+      });
+    fetch('components/promocoes.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('promocoes-placeholder').innerHTML = html;
+        if (typeof initPromocoesCarousel === 'function') {
+          initPromocoesCarousel();
+        }
+      });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initMealsSection === 'function') {
+        initMealsSection();
+      }
+      if (typeof initCartPopup === 'function') {
+        initCartPopup();
+      }
+      // initAdminPanel é chamada no header.js após a atualização do estado de login
+      // A chamada direta aqui não seria ideal, pois o header.js já lida com isso.
+      // No entanto, se quiser garantir que ela seja chamada cedo, pode manter, mas
+      // o mais importante é que ela seja re-chamada após o login/logout.
+      // Manter a chamada aqui para garantir que a UI de admin seja inicializada.
+      if (typeof initAdminPanel === 'function') {
+        initAdminPanel();
+      }
+    });
+  </script>
+</body>
+</html>

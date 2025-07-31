@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie sua Conta - ForFit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="../css/auth-common.css">
+    </head>
+<body>
+    <div class="modal-overlay register-modal-overlay">
+        <div class="auth-modal-content register-modal-content">
+            <img src="../img/logo-forfit.png" alt="ForFit Logo" class="auth-logo">
+            <h2 class="auth-title">CRIE SUA CONTA</h2> 
+            <p class="auth-subtitle">Cadastre-se para receber o melhor da ForFit.</p>
+            <form class="auth-form register-form">
+                <div class="input-group">
+                    <input type="email" id="register-email" name="email" placeholder="Endereço de e-mail*" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="register-password" name="password" placeholder="Senha*" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Confirmar Senha*" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="show-password">
+                    <label for="show-password">Mostrar senha</label>
+                </div>
+                <button type="submit" class="auth-button register-button">Continuar</button>
+                <p class="auth-link-text">Já tem conta? <a href="login.html" class="open-login-modal">Login</a></p>
+                <p class="auth-error-message register-error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/register.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initRegisterModal === 'function') {
+                initRegisterModal();
+            }
+        });
+    </script>
+</body>
+</html>

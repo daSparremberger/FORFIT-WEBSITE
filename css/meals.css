@@ -1,0 +1,159 @@
+/* meals.css */
+
+.meals-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #f8f8f8;
+}
+
+.main-category-tabs {
+    display: flex;
+    margin-left: 5%; /* Alinhamento com o padding da seção de promoções */
+    margin-bottom: 60px; /* Distância para os filtros */
+    position: relative; /* Para posicionar a linha sublinhada */
+    padding-bottom: 10px; /* Espaço para a linha */
+    gap: 30px; /* Espaçamento entre as abas principais */
+}
+
+.main-category-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Regular por padrão */
+    font-size: clamp(30px, 3.5vw, 40px); /* Poppins 40px responsivo */
+    color: var(--forfit-red);
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.5; /* Opacidade padrão */
+    transition: all 0.3s ease; /* Transição suave para font-weight e opacity */
+    white-space: nowrap; /* Evita quebra de linha */
+}
+
+.main-category-title.active {
+    font-weight: 700; /* Bold quando ativo */
+    opacity: 1; /* Opacidade total quando ativo */
+}
+
+.main-category-title:hover:not(.active) {
+    opacity: 0.75;
+}
+
+.category-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px; /* Espessura da linha */
+    background-color: var(--forfit-red);
+    transition: all 0.3s ease; /* Animação suave da linha */
+    width: 0; /* Largura inicial zero */
+}
+
+.meals-filter-content {
+    display: none; /* Esconde o conteúdo por padrão */
+}
+
+.meals-filter-content.active {
+    display: block; /* Mostra o conteúdo ativo */
+}
+
+.meals-filters {
+    display: flex;
+    justify-content: flex-start; /* GARANTIDO: Alinha os botões de filtro à esquerda */
+    margin-left: 5%;
+    margin-bottom: 60px;
+    gap: 30px;
+    flex-wrap: wrap;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.filter-button {
+    background-color: transparent;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(20px, 2.5vw, 30px);
+    color: var(--forfit-red);
+    font-weight: 400;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+.filter-button.active {
+    font-weight: 700;
+    opacity: 1;
+}
+
+.filter-button:hover:not(.active) {
+    opacity: 0.75;
+}
+
+.filter-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: var(--forfit-red);
+    transition: all 0.3s ease;
+    width: 0;
+}
+
+.meals-grid-container {
+    display: grid;
+    /* Alinha os itens à esquerda. Se houver espaço vago, ele ficará à direita */
+    justify-content: flex-start; /* NOVO: Garante alinhamento à esquerda */
+    /* Colunas para 4 itens: usando repeat e minmax para responsividade e flexibilidade */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    margin: 0 5%;
+}
+
+
+/* Ajustes para Responsividade dos Cards */
+@media (max-width: 1400px) { /* Exibir 3 cards */
+    .meals-grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+    }
+}
+
+@media (max-width: 1024px) { /* Exibir 2 cards */
+    .meals-grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .meals-title,
+    .main-category-tabs, /* Ajusta também as abas principais */
+    .meals-filters,
+    .meals-grid-container {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .meals-filters {
+        gap: 15px;
+    }
+    .filter-button {
+        font-size: clamp(16px, 2.5vw, 24px);
+    }
+    .meals-grid-container {
+        grid-template-columns: repeat(2, 1fr); /* Exibir 2 cards por linha */
+        gap: 20px;
+    }
+    .main-category-title {
+        font-size: clamp(24px, 3.5vw, 36px); /* Ajusta tamanho do título principal */
+    }
+}
+
+@media (max-width: 480px) {
+    .meals-grid-container {
+        grid-template-columns: 1fr; /* Exibir 1 card por linha */
+        gap: 15px;
+    }
+    .filter-button {
+        font-size: clamp(14px, 3vw, 20px);
+    }
+}

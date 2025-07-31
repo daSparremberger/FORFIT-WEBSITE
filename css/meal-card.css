@@ -1,0 +1,96 @@
+:root {
+    --forfit-red: #AE222A;
+    --forfit-beige: #F3E1CB;
+    --forfit-white: #FFFFFF;
+    --text-dark: #333;
+    --font-poppins: 'Poppins', sans-serif;
+}
+.meal-card {
+    aspect-ratio: 375 / 400;
+    max-width: 375px;
+    height: auto;
+    background-color: var(--forfit-beige);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+.meal-card-image-container {
+    width: 100%;
+    aspect-ratio: 375 / 260;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+.meal-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.meal-card-content {
+    flex-grow: 1;
+    background-color: var(--forfit-white);
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.meal-card-title {
+    font-family: var(--font-poppins);
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--forfit-red);
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+}
+.meal-card-code {
+    font-family: var(--font-poppins);
+    font-weight: 400;
+    font-size: 15px;
+    color: #999;
+    margin-bottom: 15px;
+    align-self: flex-end;
+    margin-top: -20px;
+    margin-right: -10px;
+}
+.meal-card-button {
+    width: 100%;
+    height: 50px;
+    background-color: var(--forfit-red);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+    padding: 0 10px;
+}
+.meal-card-button:hover {
+    background-color: #8C1C22;
+}
+.meal-card-price {
+    font-family: var(--font-poppins);
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--forfit-beige);
+    white-space: nowrap;
+}
+.meal-card-add-text {
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--forfit-beige);
+    white-space: nowrap;
+}
+@media (max-width: 400px) {
+  .meal-card-button {
+    width: 100%;
+    height: 45px;
+  }
+}

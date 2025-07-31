@@ -1,0 +1,375 @@
+:root {
+    --forfit-red: #AE222A;
+    --forfit-beige: #F3E1CB;
+    --forfit-white: #FFFFFF;
+    --text-dark: #333333;
+    --placeholder-color: #BBBBBB;
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-poppins);
+    margin: 0;
+    background-color: #f8f8f8;
+    padding-top: 20px; 
+    color: var(--text-dark);
+}
+
+.admin-content-container {
+    max-width: 1400px; 
+    margin: 50px auto;
+    padding: 40px;
+    background-color: var(--forfit-white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative; 
+}
+
+.admin-content-container h1 {
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--forfit-red);
+    margin-bottom: 40px; 
+    text-align: left; 
+}
+
+.back-button-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    padding: 8px 12px; 
+    border-radius: 6px; 
+    text-decoration: none;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 14px; 
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 10; 
+}
+
+.back-button-top:hover {
+    background-color: #8C1C22;
+    transform: translateY(-2px);
+}
+.back-button-top i {
+    font-size: 14px; 
+}
+
+.admin-actions-bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; 
+}
+
+.admin-actions-bar .add-new-item-button,
+.admin-actions-bar .delete-selected-items-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.admin-actions-bar .add-new-item-button {
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+}
+.admin-actions-bar .add-new-item-button:hover {
+    background-color: #8C1C22;
+}
+
+.admin-actions-bar .delete-selected-items-button {
+    background-color: #dc3545; 
+    color: var(--forfit-white);
+}
+.admin-actions-bar .delete-selected-items-button:hover {
+    background-color: #c82333;
+}
+
+.admin-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 50px; 
+    justify-content: flex-start; 
+}
+
+.admin-item-card {
+    position: relative;
+    cursor: pointer; 
+    border: 2px solid transparent; 
+    transition: all 0.3s ease;
+    overflow: hidden; 
+}
+.admin-item-card:hover { 
+    opacity: 0.8; 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.admin-items-grid .meal-card { 
+    background-color: var(--forfit-beige); 
+    border: 2px solid var(--forfit-red); 
+}
+.admin-items-grid .meal-card .meal-card-content {
+    background-color: var(--forfit-white); 
+}
+
+.product-quantity-display,
+.product-status-display,
+.product-nutritional-display, 
+.product-restrictions-display,
+.product-ingredients-display { 
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+    text-align: left;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+.product-quantity-display.low-stock { color: orange; font-weight: 700; }
+.product-quantity-display.out-of-stock { color: red; font-weight: 700; }
+.product-status-display.active-status { color: green; font-weight: 700; }
+.product-status-display.inactive-status { color: gray; font-weight: 700; }
+
+.selection-circle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--forfit-red);
+    border-radius: 50%;
+    background-color: var(--forfit-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20; 
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.selection-circle.selected {
+    background-color: var(--forfit-red);
+    border-color: var(--forfit-red);
+}
+.selection-circle.selected i {
+    color: var(--forfit-white);
+    font-size: 18px;
+}
+
+.admin-card-actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 15px;
+    z-index: 25;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    pointer-events: none; 
+}
+.admin-item-card:hover .admin-card-actions { 
+    opacity: 1; 
+    pointer-events: auto; 
+}
+
+.admin-action-button {
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.admin-action-button.edit { background-color: #007bff; }
+.admin-action-button.delete { background-color: #dc3545; }
+.admin-action-button.toggle-status { background-color: #6c757d; }
+.admin-action-button.toggle-status:hover { background-color: #5a6268; }
+.admin-action-button.toggle-status .fa-toggle-on { color: #28a745; }
+.admin-action-button.toggle-status .fa-toggle-off { color: #dc3545; }
+.admin-action-button:hover { transform: scale(1.05); }
+.admin-action-button.edit:hover { background-color: #0056b3; }
+.admin-action-button.delete:hover { background-color: #c82333; }
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .admin-items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+    }
+}
+@media (max-width: 992px) {
+    .admin-content-container {
+        padding: 30px 20px;
+        margin: 20px auto;
+    }
+    .admin-content-container h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+    .back-button-top {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 10px auto 20px;
+        display: table;
+    }
+}
+@media (max-width: 768px) {
+    .admin-items-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+    .admin-actions-bar {
+        justify-content: center;
+        gap: 10px; 
+    }
+    .admin-actions-bar .add-new-item-button,
+    .admin-actions-bar .delete-selected-items-button {
+        width: 100%;
+        text-align: center;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    /* ... (código existente) ... */
+
+.admin-item-card {
+    position: relative;
+    cursor: pointer; 
+    border: 2px solid transparent; 
+    transition: all 0.3s ease;
+    overflow: hidden; 
+}
+.admin-item-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* NOVO: Overlay para o hover */
+.admin-item-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.admin-items-grid .meal-card { 
+    background-color: var(--forfit-beige); 
+    border: 2px solid var(--forfit-red); 
+}
+.admin-items-grid .meal-card .meal-card-content {
+    background-color: var(--forfit-white); 
+}
+
+/* ... (código existente) ... */
+
+.selection-circle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--forfit-red);
+    border-radius: 50%;
+    background-color: var(--forfit-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3; /* Aumentado para ficar sobre o overlay */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.selection-circle.selected {
+    background-color: var(--forfit-red);
+    border-color: var(--forfit-red);
+}
+.selection-circle.selected i {
+    color: var(--forfit-white);
+    font-size: 18px;
+}
+
+/* AJUSTADO: Ações e Botões */
+.admin-card-actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column; /* NOVO: Botões empilhados */
+    gap: 10px; /* AJUSTADO: Espaçamento menor */
+    z-index: 3; /* Aumentado para ficar sobre o overlay */
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    pointer-events: none; 
+}
+.admin-item-card:hover .admin-card-actions { 
+    opacity: 1; 
+    pointer-events: auto; 
+}
+
+.admin-action-button {
+    background-color: rgba(255, 255, 255, 0.9); /* AJUSTADO: Fundo mais sutil */
+    color: var(--text-dark); /* AJUSTADO: Cor do texto escura */
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding: 8px 12px; /* AJUSTADO: Padding menor */
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 13px; /* AJUSTADO: Fonte menor */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.admin-action-button:hover { 
+    transform: scale(1.05);
+    background-color: var(--forfit-white);
+}
+
+/* REMOVIDO: Cores específicas de fundo dos botões, agora são todos brancos */
+.admin-action-button.edit:hover { background-color: #e6f2ff; color: #007bff;}
+.admin-action-button.delete:hover { background-color: #fbeaea; color: #dc3545;}
+.admin-action-button.toggle-status:hover { background-color: #e9ecef; color: #343a40;}
+
+.admin-action-button .fa-toggle-on { color: #28a745; }
+.admin-action-button .fa-toggle-off { color: #dc3545; }
+
+
+/* ... (restante do arquivo) ... */
+}

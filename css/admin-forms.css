@@ -1,0 +1,400 @@
+.image-upload-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.image-upload-section .select-image-button,
+.image-upload-section .upload-image-button {
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.image-upload-section .select-image-button {
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    border: 1px solid var(--forfit-red);
+    position: relative;
+    overflow: hidden;
+}
+
+.image-upload-section .select-image-button:hover {
+    background-color: #8C1C22;
+}
+
+.image-upload-section .select-image-button .preview-image-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    object-fit: cover;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.image-upload-section .select-image-button.has-preview .preview-image-icon {
+    opacity: 1;
+}
+.image-upload-section .select-image-button.has-preview span {
+    opacity: 0;
+}
+
+.image-upload-section input[type="text"]#image-url-input {
+    flex-grow: 1;
+    margin-left: 15px;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+.image-upload-section input[type="text"]#image-url-input:focus {
+    border-color: var(--forfit-red);
+}
+
+.image-upload-section .upload-image-button {
+    background-color: #28a745;
+    color: var(--forfit-white);
+    border: none;
+}
+.image-upload-section .upload-image-button:hover {
+    background-color: #218838;
+}
+
+.image-selector-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    width: 100%;
+}
+.image-selector-group input[type="text"]#product-photo-url-display {
+    flex-grow: 1;
+    background-color: #f8f8f8;
+    cursor: default;
+}
+
+.image-selector-group .select-image-integrated-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+.image-selector-group .select-image-integrated-button:hover {
+    background-color: #8C1C22;
+}
+
+.image-preview-area {
+    margin-top: 15px;
+    text-align: center;
+    border: 1px dashed #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fcfcfc;
+}
+.image-preview-area img#product-image-preview {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.nutritional-info-table {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    background-color: #fcfcfc;
+}
+.nutritional-info-table .table-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+.nutritional-info-table .table-row:last-child {
+    border-bottom: none;
+}
+.nutritional-info-table .table-header,
+.nutritional-info-table .table-cell {
+    padding: 10px;
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: var(--text-dark);
+    box-sizing: border-box;
+}
+.nutritional-info-table .table-header {
+    background-color: #e9ecef;
+    font-weight: 700;
+    flex: 2;
+}
+.nutritional-info-table .table-cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.nutritional-info-table .table-cell input {
+    width: 100%;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    font-size: 14px;
+    color: var(--text-dark);
+    outline: none;
+}
+.nutritional-info-table .table-cell input:focus {
+    background-color: #fff;
+    border-bottom: 1px solid var(--forfit-red);
+}
+.nutritional-unit-select {
+    width: auto;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-poppins);
+    font-size: 12px;
+    color: var(--text-dark);
+    margin-left: 5px;
+}
+
+.tags-input-container {
+    position: relative;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+.tags-input-container input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-family: var(--font-poppins);
+    font-size: 15px;
+    min-width: 100px;
+}
+.tags-input-container input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--forfit-white);
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
+    display: none;
+}
+.suggestions-list.show {
+    display: block;
+}
+.suggestions-list .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: var(--text-dark);
+    transition: background-color 0.2s ease;
+}
+.suggestions-list .suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+.selected-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    min-height: 40px;
+}
+.selected-tag {
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.selected-tag .remove-tag {
+    background: none;
+    border: none;
+    color: var(--forfit-white);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+}
+.selected-tag .remove-tag:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .image-upload-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .image-upload-section .select-image-button,
+    .image-upload-section .upload-image-button {
+        width: 100%;
+        text-align: center;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    .image-upload-section .select-image-button.has-preview .preview-image-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+    }
+    .image-selector-group .select-image-integrated-button {
+        position: relative;
+        transform: none;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .image-selector-group input[type="text"]#product-photo-url-display {
+        padding-right: 12px;
+    }
+    .tags-input-container input {
+        min-width: unset;
+    }
+
+    .discount-group {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+}
+.discount-group .form-group {
+    flex: 1;
+}
+
+.financial-preview {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.financial-preview .preview-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.financial-preview .preview-item span {
+    color: #666;
+}
+.financial-preview .preview-item strong {
+    font-weight: 700;
+}
+.financial-preview .preview-item.gain strong {
+    color: #28a745;
+}
+.financial-preview .preview-item.total {
+    grid-column: 1 / -1; /* Ocupa a linha toda */
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+.financial-preview .preview-item.total strong {
+    color: var(--forfit-red);
+}
+
+
+/* Lista de produtos na promoção */
+.promo-products-visual-list {
+    margin-top: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    max-height: 180px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #fcfcfc;
+}
+.promo-product-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.promo-product-item:last-child {
+    border-bottom: none;
+}
+.promo-product-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.promo-product-item .product-info {
+    flex-grow: 1;
+}
+.promo-product-item .product-info p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+.promo-product-item .product-info span {
+    font-size: 12px;
+    color: #666;
+}
+.promo-product-item input[type="number"] {
+    width: 50px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.promo-product-item .remove-promo-product-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 12px;
+}
+}

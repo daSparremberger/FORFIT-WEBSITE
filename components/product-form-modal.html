@@ -1,0 +1,108 @@
+<div id="product-form-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-button" data-modal-id="product-form-modal">&times;</span>
+        <h2 id="product-form-title" class="modal-title">Adicionar/Editar Produto</h2>
+        <form id="product-form" class="modal-form">
+            <input type="hidden" id="product-id" name="id">
+
+            <div class="form-group">
+                <label for="product-code">Código da Refeição (Ex: #001)</label>
+                <input type="text" id="product-code" name="product_code" placeholder="Ex: #001, PRD-FIT">
+            </div>
+
+            <div class="form-group">
+                <label for="product-title">Título do Produto*</label>
+                <input type="text" id="product-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="product-description">Descrição</label>
+                <textarea id="product-description" name="description" rows="3"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="product-cost-price">Valor de Custo*</label>
+                <input type="text" id="product-cost-price" name="cost_price" inputmode="decimal" required placeholder="R$ 0,00">
+            </div>
+            <div class="form-group">
+                <label for="product-price">Valor de Venda*</label>
+                <input type="text" id="product-price" name="price" inputmode="decimal" required placeholder="R$ 0,00">
+            </div>
+
+            <div class="form-group">
+                <label for="product-photo-url-display">Foto do Produto</label>
+                <div class="image-selector-group">
+                    <input type="text" id="product-photo-url-display" name="photo_url_display" placeholder="URL da imagem selecionada" readonly>
+                    <button type="button" id="select-image-from-bank-button" class="action-button select-button select-image-integrated-button"><i class="fas fa-plus"></i></button>
+                    <input type="hidden" id="product-photo-url-hidden" name="photo_url">
+                </div>
+                <div class="image-preview-area" id="product-image-preview-area">
+                    <img id="product-image-preview" src="" alt="Prévia da imagem" style="display: none;">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="product-quantity">Quantidade em Estoque*</label>
+                <input type="number" id="product-quantity" name="quantity" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="product-category">Categoria*</label>
+                <select id="product-category" name="category" required>
+                    <option value="">Selecione uma categoria</option>
+                    </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tabela Nutricional*</label>
+                <div class="nutritional-info-table">
+                    </div>
+                <input type="hidden" id="nutritional-info-hidden" name="nutritional_info">
+            </div>
+
+            <div class="form-group">
+                <label for="product-ingredients-input">Ingredientes*</label>
+                <div class="tags-input-container">
+                    <input type="text" id="product-ingredients-input" placeholder="Pesquisar e adicionar ingredientes">
+                    <div class="suggestions-list" id="ingredients-suggestions"></div>
+                </div>
+                <div class="selected-tags-container" id="product-ingredients-tags">
+                    </div>
+                <input type="hidden" id="product-ingredients-hidden" name="ingredients">
+            </div>
+
+            <div class="form-group">
+                <label for="product-dietary-restrictions-input">Restrições Alimentares*</label>
+                <div class="tags-input-container">
+                    <input type="text" id="product-dietary-restrictions-input" placeholder="Pesquisar e adicionar restrições">
+                    <div class="suggestions-list" id="dietary-restrictions-suggestions"></div>
+                </div>
+                <div class="selected-tags-container" id="product-dietary-restrictions-tags">
+                    </div>
+                <input type="hidden" id="product-dietary-restrictions-hidden" name="dietary_restrictions">
+            </div>
+
+            <div class="form-group checkbox-group-modal">
+                <input type="checkbox" id="product-is-active" name="is_active" checked>
+                <label for="product-is-active">Produto Ativo (visível no cardápio)</label>
+            </div>
+
+            <button type="submit" class="submit-button">Salvar Produto</button>
+        </form>
+    </div>
+</div>
+
+<div id="image-bank-selector-modal" class="modal-overlay">
+    <div class="modal-content image-bank-modal-content">
+        <span class="close-button" data-modal-id="image-bank-selector-modal">&times;</span>
+        <h2 class="modal-title">Selecionar Imagem do Banco</h2>
+        <div class="image-search-bar">
+            <input type="text" id="image-bank-search-input" placeholder="Pesquisar imagens...">
+            <button id="image-bank-search-button" class="action-button search-button"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="admin-items-grid images-grid image-selection-grid">
+            <p class="placeholder-text">Carregando imagens do banco...</p>
+        </div>
+        <div class="image-bank-actions">
+            <button id="select-chosen-image-button" class="submit-button" style="display: none;">Selecionar Imagem</button>
+            <button id="cancel-image-selection-button" class="cancel-button">Cancelar</button>
+        </div>
+    </div>
+</div>

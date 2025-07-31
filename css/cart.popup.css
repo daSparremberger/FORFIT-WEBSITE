@@ -1,0 +1,44 @@
+/* cart-popup.css */
+
+.add-to-cart-popup {
+    position: fixed; 
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50; 
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+}
+
+.add-to-cart-popup.show {
+    opacity: 1; 
+    visibility: visible;
+    transform: translateY(0); 
+}
+
+.add-to-cart-popup i {
+    font-size: 20px;
+}
+
+.flying-item {
+    position: fixed;
+    z-index: 10000;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+    border-radius: 50%; 
+    overflow: hidden;
+    background-color: var(--forfit-red); 
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+}

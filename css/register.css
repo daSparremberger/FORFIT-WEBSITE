@@ -1,0 +1,201 @@
+/* css/register.css */
+
+.modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: calc(100vh - 100px); /* Mantido, parece funcionar bem */
+  background-color: transparent;
+  z-index: auto;
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+  position: static;
+}
+
+.modal-overlay .close-button {
+  display: none;
+}
+
+.auth-modal-content {
+  background-color: var(--forfit-white);
+  padding: 40px 30px;
+  border: 2px solid var(--forfit-red); /* UNIFICADO: Borda vermelha com peso 2px */
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  max-width: 450px;
+  width: 90%;
+  position: relative;
+  transform: translateY(0);
+  transition: none;
+  text-align: center;
+  margin: 50px auto;
+}
+
+.auth-logo {
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.auth-title {
+  font-family: var(--font-poppins);
+  font-weight: 900;
+  font-size: 28px; /* UNIFICADO: Mantido 28px conforme a imagem de cadastro */
+  color: var(--forfit-red);
+  margin-bottom: 10px; /* UNIFICADO: Mantido 10px para ambos */
+}
+
+.auth-subtitle {
+  font-family: var(--font-poppins);
+  font-size: 15px;
+  color: var(--text-dark); /* Mudado para text-dark para consistência com placeholder */
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+.auth-form {
+  width: 100%;
+}
+
+.input-group {
+  margin-bottom: 15px; /* UNIFICADO: Mantido 15px para ambos */
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"],
+.input-group input[type="text"] {
+  width: calc(100% - 24px);
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: var(--font-poppins);
+  font-size: 16px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-group input::placeholder {
+  color: #bbb;
+}
+
+.input-group input[type="email"]:focus,
+.input-group input[type="password"]:focus,
+.input-group input[type="text"]:focus {
+  border-color: var(--forfit-red);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 25px; /* UNIFICADO: Mantido 25px para ambos */
+  margin-left: 5px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  color: var(--text-dark); /* Mudado para text-dark para consistência */
+  cursor: pointer;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--forfit-red);
+  color: var(--forfit-beige);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.auth-button:hover {
+  background-color: var(--forfit-beige);
+  color: var(--forfit-red);
+  border: 1px solid var(--forfit-red);
+}
+
+.forgot-password-link {
+    display: block;
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: var(--forfit-red);
+    text-align: right;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.auth-link-text {
+  font-family: var(--font-poppins);
+  font-size: 15px;
+  color: var(--text-dark); /* Mudado para text-dark para consistência */
+  margin-top: 25px;
+}
+
+.auth-link-text a {
+  color: var(--forfit-red);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.auth-link-text a:hover {
+  text-decoration: underline;
+}
+
+.auth-error-message {
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  color: #D32F2F;
+  text-align: center;
+  margin-top: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.auth-error-message.show {
+    opacity: 1;
+}
+
+/* Responsividade */
+@media (max-width: 500px) {
+    .auth-modal-content {
+        width: 95%;
+        padding: 30px 20px;
+    }
+    .auth-title {
+        font-size: 24px;
+    }
+    .auth-subtitle {
+        font-size: 14px;
+    }
+    .input-group input {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .auth-button {
+        font-size: 16px;
+        padding: 10px;
+    }
+}

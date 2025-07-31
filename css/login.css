@@ -1,0 +1,220 @@
+/* css/login.css */
+
+/* Estilos de overlay para páginas completas (não modais flutuantes) */
+.modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto; 
+  min-height: 100vh; /* Ajustado para ocupar 100% da altura da viewport */
+  background-color: transparent; 
+  z-index: auto; 
+  opacity: 1; 
+  visibility: visible; 
+  transition: none; 
+  position: static; 
+}
+
+/* Oculta o botão de fechar, pois não é um modal */
+.modal-overlay .close-button {
+  display: none;
+}
+
+/* Estilos para o conteúdo do formulário (COMPARTILHADOS com registro) */
+.auth-modal-content {
+  background-color: var(--forfit-white);
+  padding: 40px 30px;
+  border: 2px solid var(--forfit-red); /* AJUSTADO: Para 2px como no register.css */
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  max-width: 450px; /* Mantém a largura máxima para consistência */
+  width: 90%; /* Ocupa 90% da largura em telas menores */
+  position: relative;
+  transform: translateY(0); 
+  transition: none; 
+  text-align: center;
+  margin: 50px auto; /* Centraliza verticalmente o bloco na página */
+}
+
+.auth-logo {
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.auth-title {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  font-weight: 900;
+  font-size: 28px; /* AJUSTADO: Para 28px como no register.css */
+  color: var(--forfit-red); /* Vermelho ForFit */
+  margin-bottom: 10px; /* AJUSTADO: Para 10px como no register.css */
+}
+
+.auth-subtitle {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  font-size: 15px;
+  color: var(--text-dark); /* AJUSTADO: Para text-dark como no register.css */
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+.auth-form {
+  width: 100%;
+}
+
+.input-group {
+  margin-bottom: 15px; /* AJUSTADO: Para 15px como no register.css */
+}
+
+.input-group label {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--forfit-red); /* Vermelho ForFit */
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"] {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  width: calc(100% - 24px); 
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: var(--text-dark); /* Cor padrão para o texto digitado */
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-group input::placeholder {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  color: #bbb;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="password"]:focus,
+.input-group input[type="email"]:focus {
+  border-color: var(--forfit-red);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 25px; /* AJUSTADO: Para 25px como no register.css */
+  margin-left: 5px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  font-size: 14px;
+  color: var(--text-dark); /* AJUSTADO: Para text-dark como no register.css */
+  cursor: pointer;
+}
+
+/* Botão principal (Entrar/Continuar) */
+.auth-button {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  width: 100%;
+  padding: 12px;
+  background-color: var(--forfit-red); /* Fundo Vermelho ForFit */
+  color: var(--forfit-beige); /* Texto Bege ForFit */
+  border: none; /* Sem borda */
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease; /* Transição também para a cor do texto */
+}
+
+.auth-button:hover {
+  background-color: var(--forfit-beige); /* Fundo Bege ForFit no hover */
+  color: var(--forfit-red); /* Texto Vermelho ForFit no hover */
+  border: 1px solid var(--forfit-red); /* Borda no hover para manter o contorno */
+}
+
+/* Link "Esqueci a senha?" */
+.forgot-password-link {
+    font-family: 'Poppins', sans-serif; /* Poppins */
+    display: block;
+    font-size: 14px;
+    color: var(--forfit-red); /* Vermelho ForFit */
+    text-align: right;
+    margin-top: -15px; 
+    margin-bottom: 20px; 
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.auth-link-text {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  font-size: 15px;
+  color: var(--text-dark); /* AJUSTADO: Para text-dark como no register.css */
+  margin-top: 25px;
+}
+
+.auth-link-text a {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  color: var(--forfit-red); /* Vermelho ForFit */
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.auth-link-text a:hover {
+  text-decoration: underline;
+}
+
+.auth-error-message {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  font-size: 14px;
+  color: #D32F2F;
+  text-align: center;
+  margin-top: 15px; /* AJUSTADO: Para 15px como no register.css */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.auth-error-message.show {
+    opacity: 1;
+}
+
+/* Responsividade */
+@media (max-width: 500px) {
+    .auth-modal-content {
+        width: 95%;
+        padding: 30px 20px;
+    }
+    .auth-title {
+        font-size: 24px;
+    }
+    .auth-subtitle {
+        font-size: 14px;
+    }
+    .input-group input {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .auth-button {
+        font-size: 16px;
+        padding: 10px;
+    }
+    .forgot-password-link {
+        font-size: 12px;
+    }
+}

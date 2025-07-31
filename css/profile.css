@@ -1,0 +1,391 @@
+/* css/profile.css */
+
+/* Cores e Fontes - Garanta que estas variáveis estejam em um arquivo global ou aqui */
+:root {
+    --forfit-red: #AE222A;
+    --forfit-beige: #F3E1CB;
+    --forfit-white: #FFFFFF;
+    --text-dark: #333333;
+    --placeholder-color: #BBBBBB;
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-poppins);
+    margin: 0;
+    background-color: #f8f8f8;
+    padding-top: 20px; /* Reduzido o padding-top, já que o header fixo sumiu */
+    color: var(--text-dark);
+}
+
+.profile-page-container {
+    display: flex;
+    max-width: 1200px; /* Largura maior para comportar sidebar e conteúdo */
+    margin: 50px auto;
+    background-color: var(--forfit-white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    min-height: 600px; /* Altura mínima para o container do perfil */
+    overflow: hidden; /* Para garantir que o conteúdo não vaze */
+    position: relative; /* Para o botão voltar no topo */
+}
+
+/* Novo estilo para o botão de voltar no topo da página */
+.back-button-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 10; /* Para garantir que fique acima de outros elementos */
+}
+
+.back-button-top:hover {
+    background-color: #8C1C22;
+    transform: translateY(-2px);
+}
+.back-button-top i {
+    font-size: 16px;
+}
+
+
+.profile-sidebar {
+    width: 250px; /* Largura da barra lateral */
+    background-color: var(--forfit-red); /* Fundo vermelho para a sidebar */
+    padding: 30px 20px;
+    color: var(--forfit-white);
+    flex-shrink: 0; /* Impede que a sidebar diminua */
+    padding-top: 80px; /* Adiciona espaço no topo da sidebar para o botão voltar */
+}
+
+.sidebar-title {
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profile-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-nav-list .nav-item {
+    margin-bottom: 10px;
+}
+
+.profile-nav-list .nav-link {
+    display: block;
+    padding: 12px 15px;
+    color: var(--forfit-white);
+    text-decoration: none;
+    font-family: var(--font-poppins);
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.profile-nav-list .nav-link:hover,
+.profile-nav-list .nav-link.active {
+    background-color: var(--forfit-beige);
+    color: var(--forfit-red);
+}
+
+.profile-content {
+    flex-grow: 1; /* Ocupa o restante do espaço */
+    padding: 40px;
+    background-color: var(--forfit-white);
+    padding-top: 80px; /* Adiciona espaço no topo do conteúdo para o botão voltar */
+}
+
+.profile-content h1 {
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--forfit-red);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.tab-content {
+    display: none; /* Esconde todas as abas por padrão */
+}
+
+.tab-content.active {
+    display: block; /* Mostra apenas a aba ativa */
+}
+
+/* Estilos para "Informações Pessoais" */
+.info-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.info-group label {
+    display: block;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.info-group input[type="text"],
+.info-group input[type="email"],
+.info-group input[type="password"] { /* Adicionado para futuras edições de senha */
+    width: calc(100% - 24px); /* 100% menos o padding lateral */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-poppins);
+    font-size: 16px;
+    color: var(--text-dark);
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.info-group input[readonly] {
+    background-color: #f0f0f0;
+    cursor: default;
+}
+.info-group input:not([readonly]):focus { /* Estilo de foco para campos editáveis */
+    border-color: var(--forfit-red);
+}
+
+
+.edit-profile-button,
+.add-new-address-button,
+.add-new-payment-method-button,
+.add-new-product-button,
+.add-new-promotion-button,
+.select-image-button,
+.upload-image-button,
+.back-to-home-button { /* Mudar para back-button-bottom */
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    margin-top: 20px;
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+.edit-profile-button:hover,
+.add-new-address-button:hover,
+.add-new-payment-method-button:hover,
+.add-new-product-button:hover,
+.add-new-promotion-button:hover,
+.select-image-button:hover,
+.upload-image-button:hover,
+.back-to-home-button:hover {
+    background-color: var(--forfit-beige);
+    color: var(--forfit-red);
+    border: 1px solid var(--forfit-red);
+}
+
+/* Estilos para listas genéricas (endereços, pagamentos, pedidos, etc.) */
+.address-list, .payment-list, .order-list, 
+.admin-product-list, .admin-promotion-list, .admin-order-list {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    text-align: left; 
+}
+
+.placeholder-text {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 30px 0;
+}
+
+/* Reutilizando estilos de grid para favoritos e gerenciamento de produtos */
+.favorites-grid.meals-grid-container,
+.admin-product-list.meals-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 30px;
+    margin-top: 20px; 
+    padding: 20px; 
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+/* Estilos específicos para Banco de Imagens */
+.image-upload-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap; 
+}
+.image-upload-section input[type="text"] {
+    flex-grow: 1; 
+    min-width: 150px; 
+}
+.uploaded-images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+.uploaded-image-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1; 
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.uploaded-image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.uploaded-image-item .remove-image-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--forfit-red);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+.uploaded-image-item .remove-image-button:hover {
+    opacity: 1;
+    background-color: #8C1C22;
+}
+
+/* Estilos para Faturamento Mensal (Chart.js) */
+#monthly-billing-chart {
+    max-height: 400px;
+    max-width: 100%; 
+    margin: 20px auto;
+}
+.billing-data {
+    text-align: center; 
+}
+
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .profile-page-container {
+        flex-direction: column;
+        margin: 20px auto;
+        padding: 0;
+        box-shadow: none; 
+        border-radius: 0;
+    }
+    /* Ajuste para o botão voltar no topo em mobile */
+    .back-button-top {
+        position: relative; /* Deixa de ser fixo */
+        top: auto;
+        left: auto;
+        margin: 10px auto 20px; /* Centraliza e adiciona margem */
+        display: table; /* Para centralizar o block level item */
+    }
+
+    .profile-sidebar {
+        width: 100%;
+        padding: 20px;
+        border-bottom: 2px solid var(--forfit-beige);
+        padding-top: 20px; /* Remove padding extra do topo em mobile */
+    }
+    .sidebar-title {
+        margin-bottom: 20px;
+    }
+    .profile-nav-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .profile-nav-list .nav-item {
+        margin: 5px 10px;
+    }
+    .profile-nav-list .nav-link {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    .profile-content {
+        padding: 20px;
+        padding-top: 20px; /* Remove padding extra do topo em mobile */
+    }
+    .profile-content h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .edit-profile-button,
+    .add-new-address-button,
+    .add-new-payment-method-button,
+    .add-new-product-button,
+    .add-new-promotion-button,
+    .select-image-button,
+    .upload-image-button,
+    .back-to-home-button {
+        padding: 10px 15px;
+        font-size: 14px;
+        width: auto; 
+    }
+    .image-upload-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .image-upload-section button,
+    .image-upload-section input[type="text"] {
+        width: 100%;
+        margin: 5px 0 !important; 
+    }
+    .favorites-grid.meals-grid-container,
+    .admin-product-list.meals-grid-container,
+    .uploaded-images-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+        gap: 15px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-nav-list .nav-item {
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
+    }
+}

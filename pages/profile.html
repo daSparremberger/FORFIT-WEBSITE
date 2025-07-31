@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - ForFit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/profile.css"> 
+    <link rel="stylesheet" href="../css/modals.css">
+</head>
+<body>
+    <div class="profile-page-container">
+        <aside class="profile-sidebar">
+            <h2 class="sidebar-title">Meu Perfil</h2>
+            <nav class="profile-nav">
+                <ul class="profile-nav-list">
+                    <li class="nav-item"><a href="#" class="nav-link active" data-tab="personal-info">Informações Pessoais</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="addresses">Endereços</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="payment-methods">Formas de Pagamento</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="order-history">Histórico de Pedidos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="favorites">Favoritos</a></li>
+                    
+                    <li class="nav-item admin-only" style="display: none;"><a href="admin/products.html" class="nav-link">Gerenciar Produtos</a></li>
+                    <li class="nav-item admin-only" style="display: none;"><a href="admin/promotions.html" class="nav-link">Gerenciar Promoções</a></li>
+                    <li class="nav-item admin-only" style="display: none;"><a href="admin/images.html" class="nav-link">Banco de Imagens</a></li>
+                    <li class="nav-item admin-only" style="display: none;"><a href="#" class="nav-link" data-tab="monthly-billing">Faturamento Mensal</a></li>
+                    <li class="nav-item admin-only" style="display: none;"><a href="#" class="nav-link" data-tab="all-orders">Pedidos (Admin)</a></li>
+
+                    <li class="nav-item"><a href="#" class="nav-link" id="logout-link">Sair da Conta</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="profile-content">
+            <a href="../index.html" class="back-button-top"><i class="fas fa-arrow-left"></i> Voltar para Home</a>
+
+            <section id="personal-info" class="tab-content active">
+                <h1>Minhas Informações Pessoais</h1>
+                <div class="info-group">
+                    <label for="display-username">Nome de Usuário:</label>
+                    <input type="text" id="display-username" value="" readonly>
+                </div>
+                <div class="info-group">
+                    <label for="display-email">E-mail:</label>
+                    <input type="email" id="display-email" value="" readonly>
+                </div>
+                <div class="info-group">
+                    <label for="display-role">Tipo de Usuário:</label>
+                    <input type="text" id="display-role" value="" readonly>
+                </div>
+                <button class="edit-profile-button">Editar Informações</button>
+            </section>
+
+            <section id="addresses" class="tab-content">
+                <div class="address-list">
+                    <p class="placeholder-text">Nenhum endereço cadastrado. Clique em "Adicionar Novo Endereço".</p>
+                </div>
+            </section>
+
+            <section id="payment-methods" class="tab-content">
+                <div class="payment-list">
+                    <p class="placeholder-text">Nenhuma forma de pagamento cadastrada. Clique em "Adicionar Nova Forma de Pagamento".</p>
+                </div>
+            </section>
+
+            <section id="order-history" class="tab-content">
+                <div class="order-list">
+                    <p class="placeholder-text">Nenhum pedido realizado ainda.</p>
+                </div>
+            </section>
+
+            <section id="favorites" class="tab-content">
+                <div class="favorites-grid meals-grid-container">
+                    <p class="placeholder-text">Nenhum produto favorito adicionado ainda.</p>
+                </div>
+            </section>
+
+            <section id="monthly-billing" class="tab-content admin-only">
+                <div class="billing-data">
+                    <canvas id="monthly-billing-chart"></canvas>
+                    <p class="placeholder-text" id="billing-placeholder-text">Carregando dados de faturamento...</p>
+                </div>
+            </section>
+
+            <section id="all-orders" class="tab-content admin-only">
+                <div class="admin-order-list">
+                    <p class="placeholder-text">Nenhum pedido realizado.</p>
+                </div>
+            </section>
+
+            </main>
+    </div>
+
+    <div id="product-form-modal-placeholder"></div>
+    <div id="promotion-form-modal-placeholder"></div>
+
+    <script src="../js/profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // REMOVIDO: Carregamento do header, pois não é mais necessário
+            // const headerPromise = fetch('../components/header.html')
+            //     .then(res => res.text())
+            //     .then(html => {
+            //         document.getElementById('header-placeholder').innerHTML = html;
+            //         if (typeof initHeader === 'function') {
+            //             initHeader();
+            //         }
+            //     });
+            
+            const productModalPromise = fetch('../components/product-form-modal.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('product-form-modal-placeholder').innerHTML = html;
+                });
+            
+            const promotionModalPromise = fetch('../components/promotion-form-modal.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('promotion-form-modal-placeholder').innerHTML = html;
+                });
+
+            // O Promise.all agora espera apenas pelos modais (e se o header for um script direto, não precisa esperar ele)
+            Promise.all([productModalPromise, promotionModalPromise]) // Removido headerPromise
+                .then(() => {
+                    if (typeof initProfilePage === 'function') { 
+                        initProfilePage();
+                    }
+                    document.querySelectorAll('.modal-overlay .close-button').forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            const modalId = event.target.dataset.modalId;
+                            if (modalId) closeModal(modalId); 
+                        });
+                    });
+                    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                        overlay.addEventListener('click', (event) => {
+                            if (event.target === overlay) { 
+                                closeModal(overlay.id); 
+                            }
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar componentes do perfil:', error);
+                    alert('Houve um erro ao carregar a página de perfil. Verifique o console.');
+                });
+        });
+    </script>
+</body>
+</html>

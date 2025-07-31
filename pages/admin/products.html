@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Produtos - ForFit Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="../../css/modals.css"> 
+    <link rel="stylesheet" href="../../css/meal-card.css"> 
+    <link rel="stylesheet" href="../../css/admin-common.css"> 
+    <link rel="stylesheet" href="../../css/admin-forms.css"> 
+
+</head>
+<body>
+    <main class="admin-content-container">
+        <a href="../profile.html" class="back-button-top"><i class="fas fa-arrow-left"></i> Voltar para Perfil</a>
+
+        <h1>Gerenciar Produtos</h1>
+
+        <div class="admin-actions-bar">
+            <button class="add-new-item-button"><i class="fas fa-plus"></i> Adicionar Novo Produto</button>
+            <button class="delete-selected-items-button" style="display: none;"><i class="fas fa-trash-alt"></i> Remover Selecionados</button>
+        </div>
+
+        <div class="admin-items-grid meals-grid-container">
+            <p class="placeholder-text">Nenhum produto cadastrado.</p>
+        </div>
+    </main>
+
+    <div id="product-form-modal-placeholder"></div>
+
+    <script src="../../js/admin/products-page.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // REMOVIDO: Carregamento do header
+            // fetch('../../components/header.html')
+            //     .then(res => res.text())
+            //     .then(html => {
+            //         document.getElementById('header-placeholder').innerHTML = html;
+            //         if (typeof initHeader === 'function') {
+            //             initHeader();
+            //         }
+            //     });
+
+            // Carrega o modal de produto (necessário para a página de gerenciamento de produtos)
+            const productModalPromise = fetch('../../components/product-form-modal.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('product-form-modal-placeholder').innerHTML = html;
+                });
+            
+            // Inicia a lógica da página de produtos do admin
+            Promise.all([productModalPromise]) // Apenas espera pelo modal
+                .then(() => {
+                    if (typeof initProductsPage === 'function') {
+                        initProductsPage();
+                    }
+                    // Adiciona listener para fechar modais ao clicar no X
+                    document.querySelectorAll('.modal-overlay .close-button').forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            const modalId = event.target.dataset.modalId;
+                            if (modalId) closeModal(modalId); 
+                        });
+                    });
+                    // Fecha modais ao clicar fora (no overlay)
+                    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                        overlay.addEventListener('click', (event) => {
+                            if (event.target === overlay) { 
+                                closeModal(overlay.id); 
+                            }
+                        });
+                    });
+                }).catch(error => {
+                    console.error('Erro ao carregar componentes da página de produtos admin:', error);
+                });
+        });
+
+        // Definindo closeModal globalmente para que os listeners no HTML (X do modal e clique no overlay) possam encontrá-lo
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.remove('show');
+        }
+        // Definindo openModal globalmente (se for usado no products-page.js, o script já o terá)
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.add('show');
+        }
+    </script>
+</body>
+</html>

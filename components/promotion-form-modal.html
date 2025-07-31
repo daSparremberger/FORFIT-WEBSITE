@@ -1,0 +1,79 @@
+<div id="promotion-form-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-button" data-modal-id="promotion-form-modal">&times;</span>
+        <h2 id="promotion-form-title" class="modal-title">Criar/Editar Promoção</h2>
+        <form id="promotion-form" class="modal-form">
+            <input type="hidden" id="promotion-id" name="id">
+
+            <div class="form-group">
+                <label for="promotion-title">Título da Promoção*</label>
+                <input type="text" id="promotion-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="promotion-photo-url-display">Imagem da Promoção</label>
+                <div class="image-selector-group">
+                    <input type="text" id="promotion-photo-url-display" name="photo_url_display" placeholder="URL da imagem selecionada" readonly>
+                    <button type="button" id="select-promo-image-button" class="action-button select-button select-image-integrated-button"><i class="fas fa-plus"></i></button>
+                    <input type="hidden" id="promotion-photo-url-hidden" name="photo_url">
+                </div>
+                <div class="image-preview-area" id="promotion-image-preview-area">
+                    <img id="promotion-image-preview" src="" alt="Prévia da imagem" style="display: none;">
+                </div>
+            </div>
+
+            <hr>
+            <h3>Produtos nesta Promoção:</h3>
+            <div id="promotion-products-list" class="promo-products-visual-list">
+                </div>
+            <button type="button" id="add-product-to-promotion-button" class="add-more-button">Adicionar Produto</button>
+
+            <hr>
+            <h3>Descontos e Valores</h3>
+            <div class="discount-group">
+                <div class="form-group">
+                    <label for="promotion-discount-percentage">Desconto em %</label>
+                    <input type="number" id="promotion-discount-percentage" name="discount_percentage" step="0.01" min="0" max="100" placeholder="Ex: 10">
+                </div>
+                <div class="form-group">
+                    <label for="promotion-discount-amount">Desconto em R$</label>
+                    <input type="text" id="promotion-discount-amount" name="discount_amount" inputmode="decimal" placeholder="R$ 0,00">
+                </div>
+            </div>
+
+            <div class="financial-preview">
+                <div class="preview-item">
+                    <span>Custo Total:</span>
+                    <strong id="promo-cost-preview">R$ 0,00</strong>
+                </div>
+                <div class="preview-item">
+                    <span>Subtotal (Venda):</span>
+                    <strong id="promo-subtotal-preview">R$ 0,00</strong>
+                </div>
+                 <div class="preview-item gain">
+                    <span>Ganho Potencial:</span>
+                    <strong id="promo-gain-preview">R$ 0,00</strong>
+                </div>
+                <div class="preview-item total">
+                    <span>TOTAL COM DESCONTO:</span>
+                    <strong id="promo-total-preview">R$ 0,00</strong>
+                </div>
+            </div>
+            
+            <hr>
+            <div class="form-group">
+                <label for="promotion-start-date">Data de Início</label>
+                <input type="date" id="promotion-start-date" name="start_date">
+            </div>
+            <div class="form-group">
+                <label for="promotion-end-date">Data de Fim</label>
+                <input type="date" id="promotion-end-date" name="end_date">
+            </div>
+            <div class="form-group checkbox-group-modal">
+                <input type="checkbox" id="promotion-is-active" name="is_active" checked>
+                <label for="promotion-is-active">Promoção Ativa</label>
+            </div>
+
+            <button type="submit" class="submit-button">Salvar Promoção</button>
+        </form>
+    </div>
+</div>

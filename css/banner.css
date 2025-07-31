@@ -1,0 +1,148 @@
+/* css/banner.css */
+
+.banner-carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1920 / 870;
+  background-color: #F3E1CB;
+  overflow: hidden;
+}
+.banner-slide {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.banner-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  width: 40%;
+  max-width: 600px;
+  color: #AE222A;
+  font-family: 'Poppins', sans-serif;
+  z-index: 3;
+  text-align: left;
+}
+.banner-text h1 {
+  font-weight: 900;
+  font-size: clamp(36px, 5vw, 48px);
+  color: #AE222A;
+  margin: 0;
+}
+.banner-text p {
+  font-weight: 400;
+  font-size: clamp(16px, 2.2vw, 18px);
+  color: #AE222A;
+  line-height: 1.5;
+  margin-top: 2vw;
+  margin-bottom: 0;
+}
+.info-local-fixed {
+  position: absolute;
+  bottom: 20px;
+  left: 5%;
+  display: block;
+  font-weight: 900;
+  font-size: clamp(16px, 1.5vw, 20px);
+  color: #AE222A;
+  z-index: 4;
+  white-space: nowrap;
+  font-family: 'Poppins', sans-serif;
+}
+.banner-dots {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+  left: auto;
+  display: flex;
+  gap: 10px;
+  z-index: 4;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #AE222A;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  transition: width 0.3s ease, border-radius 0.3s ease;
+}
+.dot.active {
+  width: 30px;
+  border-radius: 20px;
+}
+.dot.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #AE222A;
+  animation: fillDot 5s linear forwards;
+}
+@keyframes fillDot {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* === AJUSTES PARA CELULAR === */
+
+@media (max-width: 768px) {
+  /* CORREÇÃO PRINCIPAL: Faz o banner ocupar quase a tela toda */
+  .banner-carousel {
+    height: 85vh; /* O banner agora terá 85% da altura da tela */
+    aspect-ratio: unset; /* Remove a proporção fixa */
+  }
+
+  .banner-text {
+    left: 50%;
+    width: 90%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    top: 50%;
+  }
+  .banner-dots {
+    left: 50%;
+    transform: translateX(50%);
+    bottom: 10px;
+  }
+  .info-local-fixed {
+    width: 100%;
+    text-align: center;
+    left: 0;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-text p {
+    display: none; /* Esconde o parágrafo em telas muito pequenas para limpar o visual */
+  }
+  .banner-text {
+    padding: 20px;
+    top: 45%; /* Sobe um pouco o título */
+  }
+  .banner-text h1 {
+    margin-bottom: 1vw;
+  }
+  .banner-dots {
+    bottom: 15px;
+  }
+  .info-local-fixed {
+    bottom: 45px;
+  }
+}

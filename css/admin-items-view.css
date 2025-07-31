@@ -1,0 +1,842 @@
+/* css/admin-items-view.css */
+
+/* Cores e Fontes - Garanta que estas variáveis estejam em um arquivo global ou aqui */
+:root {
+    --forfit-red: #AE222A;
+    --forfit-beige: #F3E1CB;
+    --forfit-white: #FFFFFF;
+    --text-dark: #333333;
+    --placeholder-color: #BBBBBB;
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-poppins);
+    margin: 0;
+    background-color: #f8f8f8;
+    padding-top: 20px; 
+    color: var(--text-dark);
+}
+
+/* Layout geral da página de admin */
+.admin-content-container {
+    max-width: 1400px; 
+    margin: 50px auto;
+    padding: 40px;
+    background-color: var(--forfit-white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative; 
+}
+
+.admin-content-container h1 {
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--forfit-red);
+    margin-bottom: 40px; 
+    text-align: left; 
+}
+
+/* Estilo para o botão de voltar no topo da página (um pouco menor) */
+.back-button-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    padding: 8px 12px; 
+    border-radius: 6px; 
+    text-decoration: none;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 14px; 
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 10; 
+}
+
+.back-button-top:hover {
+    background-color: #8C1C22;
+    transform: translateY(-2px);
+}
+.back-button-top i {
+    font-size: 14px; 
+}
+
+
+.admin-actions-bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; 
+}
+
+.admin-actions-bar .add-new-item-button {
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-actions-bar .add-new-item-button:hover {
+    background-color: #8C1C22;
+}
+
+.admin-actions-bar .delete-selected-items-button {
+    background-color: #dc3545; 
+    color: var(--forfit-white);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-actions-bar .delete-selected-items-button:hover {
+    background-color: #c82333;
+}
+
+/* Grid de itens do admin */
+.admin-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 50px; 
+    justify-content: flex-start; 
+}
+
+/* Estilo base para cada card de item (produto, promoção, imagem) */
+.admin-item-card {
+    position: relative;
+    cursor: pointer; 
+    border: 2px solid transparent; 
+    transition: all 0.3s ease;
+    overflow: hidden; 
+}
+
+/* Efeito de hover no card */
+.admin-item-card:hover { 
+    opacity: 0.8; 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Estilos adicionais para o conteúdo do card de produto (reutilizando .meal-card) */
+.admin-items-grid .meal-card { 
+    background-color: var(--forfit-beige); 
+    border: 2px solid var(--forfit-red); 
+}
+.admin-items-grid .meal-card .meal-card-content {
+    background-color: var(--forfit-white); 
+}
+
+.product-quantity-display,
+.product-status-display,
+.product-nutritional-display, 
+.product-restrictions-display,
+.product-ingredients-display { 
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+    text-align: left;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+.product-quantity-display strong,
+.product-status-display strong,
+.product-nutritional-display strong, 
+.product-restrictions-display strong,
+.product-ingredients-display strong { 
+    color: var(--text-dark);
+}
+.product-quantity-display.low-stock {
+    color: orange;
+    font-weight: 700;
+}
+.product-quantity-display.out-of-stock {
+    color: red;
+    font-weight: 700;
+}
+.product-status-display.active-status {
+    color: green;
+    font-weight: 700;
+}
+.product-status-display.inactive-status {
+    color: gray;
+    font-weight: 700;
+}
+
+
+/* Estilo para o círculo de seleção */
+.selection-circle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--forfit-red);
+    border-radius: 50%;
+    background-color: var(--forfit-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20; 
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.selection-circle.selected {
+    background-color: var(--forfit-red);
+    border-color: var(--forfit-red);
+}
+
+.selection-circle.selected i {
+    color: var(--forfit-white);
+    font-size: 18px;
+}
+
+/* Opções de Ação no Hover */
+.admin-card-actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 15px;
+    z-index: 25;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    pointer-events: none; 
+}
+
+.admin-item-card:hover .admin-card-actions { 
+    opacity: 1; 
+    pointer-events: auto; 
+}
+
+.admin-action-button {
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.admin-action-button.edit {
+    background-color: #007bff; 
+}
+.admin-action-button.delete {
+    background-color: #dc3545; 
+}
+.admin-action-button.toggle-status {
+    background-color: #6c757d; 
+}
+.admin-action-button.toggle-status:hover {
+    background-color: #5a6268;
+}
+.admin-action-button.toggle-status .fa-toggle-on { color: #28a745; } 
+.admin-action-button.toggle-status .fa-toggle-off { color: #dc3545; } 
+
+
+.admin-action-button:hover {
+    transform: scale(1.05);
+}
+.admin-action-button.edit:hover {
+    background-color: #0056b3;
+}
+.admin-action-button.delete:hover {
+    background-color: #c82333;
+}
+
+
+/* Estilos para cards de imagens no admin */
+.admin-items-grid.images-grid .admin-item-card.image-item-card { 
+    background-color: var(--forfit-white); 
+    border: 1px solid #ddd;
+    padding-bottom: 0; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    height: auto; 
+    min-height: 200px; 
+    border-radius: 10px; 
+    box-sizing: border-box; 
+    padding: 10px; 
+}
+
+.admin-items-grid.images-grid .image-item-card img {
+    width: 100%;
+    height: 100%; 
+    object-fit: contain; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+/* Esconde TODOS os elementos de texto do meal-card para cards de imagem */
+.admin-items-grid.images-grid .admin-item-card .meal-card-title,
+.admin-items-grid.images-grid .admin-item-card .meal-card-code,
+.admin-items-grid.images-grid .admin-item-card .meal-card-price,
+.admin-items-grid.images-grid .admin-item-card .product-quantity-display,
+.admin-items-grid.images-grid .admin-item-card .product-status-display,
+.admin-items-grid.images-grid .admin-item-card .meal-card-button,
+.admin-items-grid.images-grid .admin-item-card .image-url-display {
+    display: none;
+}
+
+
+/* Estilos para a seção de upload de imagens */
+.image-upload-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    margin-bottom: 30px;
+    flex-wrap: wrap; 
+    padding: 20px; 
+    background-color: #f0f0f0; 
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.image-upload-section .select-image-button,
+.image-upload-section .upload-image-button {
+    padding: 15px 25px; 
+    font-size: 18px; 
+    border-radius: 10px; 
+    font-weight: 700;
+}
+
+.image-upload-section .select-image-button {
+    background-color: var(--forfit-red); 
+    color: var(--forfit-white);
+    border: 1px solid var(--forfit-red);
+    position: relative; 
+    overflow: hidden; 
+}
+
+.image-upload-section .select-image-button:hover {
+    background-color: #8C1C22;
+}
+
+.image-upload-section .select-image-button .preview-image-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 10px); 
+    height: calc(100% - 10px); 
+    object-fit: cover; 
+    border-radius: 8px; 
+    transition: opacity 0.3s ease;
+    opacity: 0; 
+}
+
+.image-upload-section .select-image-button.has-preview .preview-image-icon {
+    opacity: 1; 
+}
+.image-upload-section .select-image-button.has-preview span {
+    opacity: 0; 
+}
+
+
+.image-upload-section input[type="text"]#image-url-input {
+    flex-grow: 1; 
+    margin-left: 15px; 
+    padding: 15px; 
+    font-size: 16px;
+    border-radius: 8px; 
+    border: 1px solid #ccc; 
+    outline: none; 
+    transition: border-color 0.2s ease;
+}
+.image-upload-section input[type="text"]#image-url-input:focus {
+    border-color: var(--forfit-red); 
+}
+
+
+.image-upload-section .upload-image-button {
+    background-color: #28a745; 
+    color: var(--forfit-white);
+    border: none;
+}
+.image-upload-section .upload-image-button:hover {
+    background-color: #218838;
+}
+
+/* Estilos para o image-selector-group no modal de produto */
+.image-selector-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    position: relative; 
+    width: 100%;
+}
+.image-selector-group input[type="text"]#product-photo-url-display {
+    flex-grow: 1; 
+    position: relative; 
+    background-color: #f8f8f8; 
+    cursor: default; 
+}
+
+.image-selector-group .select-image-integrated-button {
+    width: 45px; 
+    height: 45px; 
+    border-radius: 8px; 
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    font-size: 24px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; 
+}
+.image-selector-group .select-image-integrated-button:hover {
+    background-color: #8C1C22;
+}
+
+.image-preview-area {
+    margin-top: 15px;
+    text-align: center;
+    border: 1px dashed #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 100px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fcfcfc;
+}
+.image-preview-area img#product-image-preview {
+    max-width: 100%;
+    max-height: 150px; 
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+
+/* Estilos para o modal de seleção de imagens (image-bank-selector-modal) */
+.modal-content.image-bank-modal-content {
+    max-width: 900px; 
+    max-height: 90vh; 
+    padding: 30px;
+}
+.image-bank-modal-content .modal-title {
+    margin-bottom: 25px;
+}
+.image-bank-modal-content .image-search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.image-bank-modal-content .image-search-bar input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-poppins);
+    font-size: 16px;
+}
+.image-bank-modal-content .image-search-bar .search-button {
+    background-color: #6c757d; 
+    color: var(--forfit-white);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.image-bank-modal-content .image-search-bar .search-button:hover {
+    background-color: #5a6268;
+}
+
+.image-bank-modal-content .image-selection-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
+    gap: 15px;
+    max-height: 400px; 
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+.image-bank-modal-content .image-selection-grid .admin-item-card {
+    min-height: 120px; 
+    border: 2px solid transparent; 
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.image-bank-modal-content .image-selection-grid .admin-item-card.selected-for-product {
+    border-color: var(--forfit-red); 
+    box-shadow: 0 0 0 3px var(--forfit-red); 
+}
+.image-bank-modal-content .image-selection-grid .admin-item-card img {
+    height: 100px; 
+    width: auto; 
+    object-fit: contain;
+}
+.image-bank-modal-content .image-bank-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+.image-bank-modal-content .cancel-button {
+    background-color: #6c757d;
+    color: var(--forfit-white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.image-bank-modal-content .cancel-button:hover {
+    background-color: #5a6268;
+}
+
+
+/* Estilos para Tabela Nutricional */
+.nutritional-info-table {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    background-color: #fcfcfc;
+}
+.nutritional-info-table .table-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+.nutritional-info-table .table-row:last-child {
+    border-bottom: none;
+}
+.nutritional-info-table .table-header,
+.nutritional-info-table .table-cell {
+    padding: 10px;
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: var(--text-dark);
+    box-sizing: border-box;
+}
+.nutritional-info-table .table-header {
+    background-color: #e9ecef;
+    font-weight: 700;
+    flex: 2; 
+}
+.nutritional-info-table .table-cell {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+}
+.nutritional-info-table .table-cell input {
+    width: 100%;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    font-size: 14px;
+    color: var(--text-dark);
+    outline: none;
+}
+.nutritional-info-table .table-cell input:focus {
+    background-color: #fff;
+    border-bottom: 1px solid var(--forfit-red);
+}
+.nutritional-unit-select { /* ESTILO PARA O SELECT DE UNIDADE POR LINHA */
+    width: auto;
+    padding: 5px; /* Ajuste o padding para ser menor */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-poppins);
+    font-size: 12px; /* Fonte menor para caber */
+    color: var(--text-dark);
+    margin-left: 5px; /* Espaço do input */
+}
+
+
+/* Estilos para Ingredientes e Restrições (tags/chips) */
+.tags-input-container {
+    position: relative;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; 
+    padding: 5px;
+}
+.tags-input-container input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-family: var(--font-poppins);
+    font-size: 15px;
+    min-width: 100px; 
+}
+.tags-input-container input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--forfit-white);
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
+    display: none; 
+}
+.suggestions-list.show {
+    display: block;
+}
+.suggestions-list .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    color: var(--text-dark);
+    transition: background-color 0.2s ease;
+}
+.suggestions-list .suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+.selected-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #eee; 
+    border-radius: 5px;
+    min-height: 40px; 
+}
+.selected-tag {
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.selected-tag .remove-tag {
+    background: none;
+    border: none;
+    color: var(--forfit-white);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+}
+.selected-tag .remove-tag:hover {
+    opacity: 0.8;
+}
+
+
+/* Ajustes de responsividade */
+@media (max-width: 1200px) {
+    .admin-items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .admin-content-container {
+        padding: 30px 20px;
+        margin: 20px auto;
+    }
+    .admin-items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    .admin-content-container h1 {
+        font-size: 30px;
+        text-align: center; 
+    }
+    .back-button-top {
+        position: relative; 
+        top: auto;
+        left: auto;
+        margin: 10px auto 20px; 
+        display: table; 
+    }
+    .image-upload-section input[type="text"]#image-url-input {
+        margin-left: 0; 
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-items-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+    .admin-actions-bar {
+        justify-content: center;
+        gap: 10px; 
+    }
+    .admin-actions-bar .add-new-item-button,
+    .admin-actions-bar .delete-selected-items-button,
+    .image-upload-section .select-image-button,
+    .image-upload-section .upload-image-button { 
+        width: 100%;
+        text-align: center;
+        padding: 10px 15px;
+        font-size: 14px;
+        margin-left: 0 !important; 
+        margin-right: 0 !important;
+    }
+    .image-upload-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px; 
+    }
+    .admin-content-container h1 {
+        font-size: 24px;
+    }
+    /* Estilo para a prévia da imagem no botão em mobile */
+    .image-upload-section .select-image-button.has-preview .preview-image-icon {
+        width: 80px; 
+        height: 80px;
+        border-radius: 8px; 
+    }
+    /* Ajustes para o botão integrado no campo de URL em mobile */
+    .image-selector-group .select-image-integrated-button {
+        position: relative; 
+        transform: none; 
+        width: 100%;
+        margin-top: 10px; 
+    }
+    .image-selector-group input[type="text"]#product-photo-url-display {
+        padding-right: 12px; 
+    }
+
+    /* Ajustes para tags em mobile */
+    .tags-input-container input {
+        min-width: unset;
+    }
+}
+.modal-content.product-selector-modal-content {
+    max-width: 900px; 
+    max-height: 90vh; 
+}
+
+.item-search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.item-search-bar input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-poppins);
+    font-size: 16px;
+}
+
+.product-selection-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+    gap: 15px;
+    max-height: 400px; 
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.product-selection-grid .admin-item-card {
+    min-height: auto;
+    border: 2px solid #ddd;
+    background-color: #f9f9f9;
+    padding: 0;
+}
+
+.product-selection-grid .admin-item-card.selected-for-promo {
+    border-color: var(--forfit-red); 
+    box-shadow: 0 0 10px rgba(174, 34, 42, 0.5);
+    transform: translateY(-2px);
+}
+
+.product-selection-grid .selectable-product-content {
+    padding: 10px;
+    text-align: center;
+}
+
+.product-selection-grid .selectable-product-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 5px 0;
+    color: var(--text-dark);
+}
+
+.product-selection-grid .selectable-product-price {
+    font-size: 13px;
+    color: var(--forfit-red);
+    font-weight: 700;
+}
+
+.selector-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.selector-modal-actions .cancel-button {
+    background-color: #6c757d;
+    color: var(--forfit-white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .admin-items-grid {
+        grid-template-columns: 1fr; 
+        gap: 15px; 
+    }
+}

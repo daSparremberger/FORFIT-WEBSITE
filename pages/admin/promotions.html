@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Promoções - ForFit Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="../../css/modals.css"> 
+    <link rel="stylesheet" href="../../css/admin-common.css"> 
+    <link rel="stylesheet" href="../../css/admin-forms.css"> 
+</head>
+<body>
+    <main class="admin-content-container">
+        <a href="../profile.html" class="back-button-top"><i class="fas fa-arrow-left"></i> Voltar para Perfil</a>
+
+        <h1>Gerenciar Promoções</h1>
+
+        <div class="admin-actions-bar">
+            <button class="add-new-item-button"><i class="fas fa-plus"></i> Criar Nova Promoção</button>
+            <button class="delete-selected-items-button" style="display: none;"><i class="fas fa-trash-alt"></i> Remover Selecionadas</button>
+        </div>
+
+        <div class="admin-items-grid promotions-grid">
+            <p class="placeholder-text">Nenhuma promoção cadastrada.</p>
+        </div>
+    </main>
+
+    <div id="modals-placeholder"></div>
+
+    <script src="../../js/admin/promotions-page.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Carrega todos os componentes de modais em um único placeholder
+            Promise.all([
+                fetch('../../components/promotion-form-modal.html').then(res => res.text()),
+                // Reutiliza o product-form-modal.html para pegar o modal de banco de imagens
+                fetch('../../components/product-form-modal.html').then(res => res.text())
+            ]).then(([promotionModalHtml, productModalHtml]) => {
+                const placeholder = document.getElementById('modals-placeholder');
+                
+                // Adiciona o modal de formulário de promoção
+                placeholder.innerHTML += promotionModalHtml;
+
+                // Extrai apenas o modal de banco de imagens e adiciona
+                const doc = new DOMParser().parseFromString(productModalHtml, 'text/html');
+                const imageBankModal = doc.getElementById('image-bank-selector-modal');
+                if (imageBankModal) {
+                    placeholder.appendChild(imageBankModal);
+                }
+
+                // --- NOVO --- Adiciona o HTML do seletor de produtos diretamente
+                const productSelectorHtml = `
+                <div id="product-selector-modal" class="modal-overlay">
+                    <div class="modal-content product-selector-modal-content">
+                        <span class="close-button" data-modal-id="product-selector-modal">&times;</span>
+                        <h2 class="modal-title">Selecionar Produto para a Promoção</h2>
+                        <div class="item-search-bar">
+                            <input type="text" id="product-selector-search-input" placeholder="Pesquisar produtos pelo nome...">
+                        </div>
+                        <div class="admin-items-grid product-selection-grid">
+                            <p class="placeholder-text">Carregando produtos...</p>
+                        </div>
+                        <div class="selector-modal-actions">
+                            <button id="add-selected-product-button" class="submit-button" disabled>Adicionar Produto Selecionado</button>
+                            <button id="cancel-product-selection-button" class="cancel-button">Cancelar</button>
+                        </div>
+                    </div>
+                </div>`;
+                placeholder.innerHTML += productSelectorHtml;
+
+            }).then(() => {
+                if (typeof initPromotionsPage === 'function') {
+                    initPromotionsPage();
+                }
+                // Listeners globais para fechar modais
+                document.querySelectorAll('.modal-overlay .close-button').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        closeModal(event.target.dataset.modalId); 
+                    });
+                });
+                document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                    overlay.addEventListener('click', (event) => {
+                        if (event.target === overlay) closeModal(overlay.id); 
+                    });
+                });
+            }).catch(error => {
+                console.error('Erro ao carregar componentes da página de promoções:', error);
+            });
+        });
+
+        // Funções globais de controle de modal
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.remove('show');
+        }
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.add('show');
+        }
+    </script>
+</body>
+</html>

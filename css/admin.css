@@ -1,0 +1,133 @@
+/* admin.css */
+
+/* Estilo para o Card "Adicionar Novo Item" */
+.meal-card.add-new-item {
+    background-color: #E6E6E6; /* Cinza claro para indicar vazio */
+    border: 2px dashed #999; /* Borda tracejada */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.meal-card.add-new-item:hover {
+    background-color: #D6D6D6;
+    border-color: #666;
+}
+
+.add-new-item-icon {
+    font-size: 80px; /* Tamanho do "+" */
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.add-new-item-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #999;
+}
+
+/* Estilo para o Botão de Remover nos Cards Existentes */
+.remove-item-button {
+    position: absolute;
+    top: 5px; /* Posição no canto superior direito */
+    right: 5px;
+    background-color: #AE222A; /* Vermelho da ForFit */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Botão redondo */
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1; /* Centraliza o "-" */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15; /* Acima da imagem do card */
+    transition: background-color 0.2s ease;
+    opacity: 0.8;
+}
+
+.remove-item-button:hover {
+    background-color: #8C1C22;
+    opacity: 1;
+}
+
+/* Oculta o botão de remover por padrão se não for admin */
+.meal-card .remove-item-button {
+    display: none; 
+}
+/* Mostra o botão apenas quando o admin está logado */
+body.admin-mode .meal-card .remove-item-button {
+    display: flex; 
+}
+
+
+/* Estilos para o Pop-up de Confirmação */
+.confirm-remove-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Acima de tudo */
+    visibility: hidden; /* Escondido por padrão */
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.confirm-remove-popup.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup-content {
+    background-color: var(--forfit-white);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+    max-width: 400px;
+    color: var(--text-dark);
+}
+
+.popup-content p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.popup-actions button {
+    background-color: var(--forfit-red);
+    color: var(--forfit-white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 10px;
+    transition: background-color 0.2s ease;
+}
+
+.popup-actions .btn-confirm-no {
+    background-color: #ccc;
+    color: #333;
+}
+
+.popup-actions .btn-confirm-yes:hover {
+    background-color: #8C1C22;
+}
+
+.popup-actions .btn-confirm-no:hover {
+    background-color: #bbb;
+}
